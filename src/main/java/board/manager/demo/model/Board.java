@@ -1,6 +1,7 @@
 package board.manager.demo.model;
 
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -16,6 +17,6 @@ public class Board {
     private Long id;
     private String name;
     private String imagePath;
-    @OneToMany
+    @OneToMany(cascade = CascadeType.REMOVE)
     private List<Column> columns;
 }
