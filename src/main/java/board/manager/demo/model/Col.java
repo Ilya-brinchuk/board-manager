@@ -19,6 +19,6 @@ public class Col {
     private String title;
     @ManyToOne
     private Board board;
-    @OneToMany(cascade = CascadeType.REMOVE)
+    @OneToMany(cascade = CascadeType.REMOVE, mappedBy = "col")
     private List<Task> tasks;
 }
