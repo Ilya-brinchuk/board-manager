@@ -16,5 +16,5 @@ public class Task {
     private String title;
     private String description;
     @ManyToOne
-    private Column column;
+    private Col col;
 }
