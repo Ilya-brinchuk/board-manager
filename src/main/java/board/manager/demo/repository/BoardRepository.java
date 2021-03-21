@@ -10,7 +10,7 @@ import org.springframework.data.repository.query.Param;
 
 public interface BoardRepository extends JpaRepository<Board, Long> {
 
-    @Query("select b from Board b inner join fetch b.columns where b.id = :id")
+    @Query("select b from Board b inner join fetch b.cols where b.id = :id")
     Optional<Board> findByIdWithRelations(@Param("id") Long id);
 
     @Query("update Board b set b.name = :name where b.id = :id")

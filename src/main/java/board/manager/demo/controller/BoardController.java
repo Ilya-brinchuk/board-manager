@@ -1,15 +1,11 @@
 package board.manager.demo.controller;
 
 import board.manager.demo.model.Board;
-import board.manager.demo.model.Col;
-import board.manager.demo.model.Task;
 import board.manager.demo.model.dto.BoardRequestDto;
 import board.manager.demo.model.dto.BoardResponseDto;
 import board.manager.demo.service.BoardService;
-import board.manager.demo.service.ColumnService;
 import board.manager.demo.service.MapperToDto;
 import board.manager.demo.service.MapperToEntity;
-import board.manager.demo.service.TaskService;
 import java.util.List;
 import java.util.stream.Collectors;
 import javax.annotation.PostConstruct;
@@ -30,18 +26,13 @@ public class BoardController {
     private final BoardService boardService;
     private final MapperToDto<Board, BoardResponseDto> mapperBoardToDto;
     private final MapperToEntity<Board, BoardRequestDto> mapperBoardToEntity;
-    private final ColumnService columnService;
-    private final TaskService taskService;
 
     public BoardController(BoardService boardService,
                            MapperToDto<Board, BoardResponseDto> mapperBoardToDto,
-                           MapperToEntity<Board, BoardRequestDto> mapperBoardToEntity,
-                           ColumnService columnService, TaskService taskService) {
+                           MapperToEntity<Board, BoardRequestDto> mapperBoardToEntity) {
         this.boardService = boardService;
         this.mapperBoardToDto = mapperBoardToDto;
         this.mapperBoardToEntity = mapperBoardToEntity;
-        this.columnService = columnService;
-        this.taskService = taskService;
     }
 
     @PostMapping
@@ -101,18 +92,5 @@ public class BoardController {
     @PostConstruct
     public void init() {
 
-        Col byColumn = new Col();
-        byColumn.setTitle("Title");
-
-        Task task = new Task();
-        task.setTitle("Title");
-        task.setDescription("Description");
-        taskService.save(task);
-        byColumn.setTasks(List.of(task));
-        columnService.save(byColumn);
-        Board board = new Board();
-        board.setName("Bob");
-        board.setColumns(List.of(byColumn));
-        boardService.save(board);
     }
 }
