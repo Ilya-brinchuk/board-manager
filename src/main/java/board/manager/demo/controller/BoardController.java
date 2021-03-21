@@ -1,7 +1,7 @@
 package board.manager.demo.controller;
 
 import board.manager.demo.model.Board;
-import board.manager.demo.model.Column;
+import board.manager.demo.model.Col;
 import board.manager.demo.model.Task;
 import board.manager.demo.model.dto.BoardRequestDto;
 import board.manager.demo.model.dto.BoardResponseDto;
@@ -101,7 +101,7 @@ public class BoardController {
     @PostConstruct
     public void init() {
 
-        Column byColumn = new Column();
+        Col byColumn = new Col();
         byColumn.setTitle("Title");
 
         Task task = new Task();

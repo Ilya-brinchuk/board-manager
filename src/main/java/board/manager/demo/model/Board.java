@@ -18,5 +18,5 @@ public class Board {
     private String name;
     private String imagePath;
     @OneToMany(cascade = CascadeType.REMOVE)
-    private List<Column> columns;
+    private List<Col> columns;
 }

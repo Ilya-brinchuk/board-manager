@@ -1,13 +1,11 @@
 package board.manager.demo.service;
 
-import board.manager.demo.model.Column;
+import board.manager.demo.model.Col;
 
 public interface ColumnService {
-    Column save(Column byColumn);
+    Col save(Col byColumn);
 
-    Column get(Long id);
+    Col get(Long id);
 
-    Column updateTitle(Long id, String title);
-
-    Column delete(Long id);
+    Col delete(Long id);
 }

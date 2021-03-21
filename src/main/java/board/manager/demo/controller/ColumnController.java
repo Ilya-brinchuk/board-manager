@@ -1,7 +1,7 @@
 package board.manager.demo.controller;
 
 import board.manager.demo.model.Board;
-import board.manager.demo.model.Column;
+import board.manager.demo.model.Col;
 import board.manager.demo.model.Task;
 import board.manager.demo.model.dto.ColumnCreateRequestDto;
 import board.manager.demo.model.dto.ColumnResponseDto;
@@ -28,14 +28,14 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/columns")
 public class ColumnController {
     private final ColumnService columnService;
-    private final MapperToDto<Column, ColumnResponseDto> mapperColumnToDto;
+    private final MapperToDto<Col, ColumnResponseDto> mapperColumnToDto;
     private final BoardService boardService;
     private final TaskService taskService;
     private final MapperToEntity<Task, TaskRequestDto> mapperTaskToEntity;
     private final MapperToDto<Task, TaskResponseDto> mapperTaskToDto;
 
     public ColumnController(ColumnService columnService,
-                            MapperToDto<Column, ColumnResponseDto> mapperColumnToDto,
+                            MapperToDto<Col, ColumnResponseDto> mapperColumnToDto,
                             BoardService boardService, TaskService taskService,
                             MapperToEntity<Task, TaskRequestDto> mapperTaskToEntity,
                             MapperToDto<Task, TaskResponseDto> mapperTaskToDto) {
@@ -50,7 +50,7 @@ public class ColumnController {
     @PostMapping
     public ResponseEntity<ColumnResponseDto> create(
             @RequestBody ColumnCreateRequestDto requestDto) {
-        Column column = new Column();
+        Col column = new Col();
         column.setTitle(requestDto.getTitle());
         Board board = boardService.get(requestDto.getBoardId());
         column.setBoard(board);
@@ -63,7 +63,7 @@ public class ColumnController {
     public ResponseEntity<ColumnResponseDto> update(
             @PathVariable Long id,
             @RequestBody ColumnUpdateRequestDto requestDto) {
-        Column column = columnService.get(id);
+        Col column = columnService.get(id);
         Board board = boardService.get(requestDto.getBoardId());
         List<Task> tasks = requestDto.getTasksId()
                 .stream()
@@ -82,7 +82,7 @@ public class ColumnController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<ColumnResponseDto> remove(@PathVariable Long id) {
-        Column column = columnService.delete(id);
+        Col column = columnService.delete(id);
         ColumnResponseDto responseDto = mapperColumnToDto.mapToDto(column);
         return ResponseEntity.ok(responseDto);
     }
@@ -92,8 +92,8 @@ public class ColumnController {
             @PathVariable Long columnId,
             @RequestBody TaskRequestDto requestDto) {
         Task task = mapperTaskToEntity.mapToEntity(requestDto);
-        Column column = columnService.get(columnId);
-        task.setColumn(column);
+        Col column = columnService.get(columnId);
+        task.setCol(column);
         taskService.save(task);
         TaskResponseDto responseDto = mapperTaskToDto.mapToDto(task);
         return ResponseEntity.ok(responseDto);

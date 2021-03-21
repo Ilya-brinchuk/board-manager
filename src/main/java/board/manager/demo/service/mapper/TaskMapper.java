@@ -22,7 +22,7 @@ public class TaskMapper implements MapperToEntity<Task, TaskRequestDto>,
     public TaskResponseDto mapToDto(Task task) {
         TaskResponseDto responseDto = new TaskResponseDto();
         responseDto.setTaskId(task.getId());
-        responseDto.setColumnId(task.getColumn().getId());
+        responseDto.setColumnId(task.getCol().getId());
         responseDto.setTitle(task.getTitle());
         responseDto.setDescription(task.getDescription());
         return responseDto;
