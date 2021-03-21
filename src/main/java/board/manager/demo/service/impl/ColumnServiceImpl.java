@@ -15,8 +15,13 @@ public class ColumnServiceImpl implements ColumnService {
     }
 
     @Override
-    public Column save(Column column) {
-        return columnRepository.save(column);
+    public Column save(Column byColumn) {
+        return columnRepository.save(byColumn);
+    }
+
+    @Override
+    public Column get(Long id) {
+        return columnRepository.getOne(id);
     }
 
     @Override
