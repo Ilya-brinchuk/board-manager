@@ -17,6 +17,6 @@ public class Board {
     private Long id;
     private String name;
     private String imagePath;
-    @OneToMany(cascade = CascadeType.REMOVE)
+    @OneToMany(mappedBy = "board", cascade = CascadeType.REMOVE)
     private List<Col> cols;
 }
