@@ -1,7 +1,7 @@
 BOARD MANAGER
 ======
 This project implements the CRM program model.
-You can test all the methods at the following link:
+You can test all the methods at the following link after the startup app:
 [localhost:8080](http://localhost:8080/swagger-ui.html#/)
 
 USED TECHNOLOGIES:
