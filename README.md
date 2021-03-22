@@ -13,18 +13,18 @@ USED TECHNOLOGIES:
 5. Swagger
 
 TO START APP:
-======
-1. 
-2. Install MySQL and MySQL Workbench
-3. Setup connection properties in **application.properties** file
+====== 
+1. Install MySQL and MySQL Workbench.
+   You can use your DB with changed settings in the properties.
+2. Setup connection properties in **application.properties** file
 * user: "your username"
 * password: "your password"
 * db.url=jdbc:mysql:jdbc:mysql://localhost:3306/boardDB?createDatabaseIfNotExist=true
-4. Run application
-5. In the login window enter:
+3. Run application
+4. In the login window enter:
 * login: "user"
 * password: is generated on the startup, copy it from console
-6. Follow the link to operate with methods,
+5. Follow the link to operate with methods,
    or you can install PostMan and use it.
   
 AUTHOR:
