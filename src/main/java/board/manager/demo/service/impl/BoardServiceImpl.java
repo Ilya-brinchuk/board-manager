@@ -8,6 +8,7 @@ import java.util.List;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class BoardServiceImpl implements BoardService {
@@ -47,8 +48,10 @@ public class BoardServiceImpl implements BoardService {
     }
 
     @Override
+    @Transactional
     public Board delete(Long id) {
-        return boardRepository.removeBoardById(id).orElseThrow(() ->
-                new DataProcessingException("Can't delete board by this id: " + id));
+        Board board = boardRepository.getOne(id);
+        boardRepository.delete(board);
+        return board;
     }
 }

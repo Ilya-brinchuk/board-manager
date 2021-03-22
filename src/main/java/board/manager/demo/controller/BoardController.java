@@ -90,7 +90,7 @@ public class BoardController {
 
     @GetMapping("/{id}/read-full")
     public ResponseEntity<Board> readFullBoard(@PathVariable Long id) {
-        Board board = boardService.get(id);
+        Board board = boardService.getFull(id);
         return ResponseEntity.ok(board);
     }
 

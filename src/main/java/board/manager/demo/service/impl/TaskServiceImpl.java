@@ -1,10 +1,10 @@
 package board.manager.demo.service.impl;
 
-import board.manager.demo.exception.DataProcessingException;
 import board.manager.demo.model.Task;
 import board.manager.demo.repository.TaskRepository;
 import board.manager.demo.service.TaskService;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class TaskServiceImpl implements TaskService {
@@ -25,8 +25,10 @@ public class TaskServiceImpl implements TaskService {
     }
 
     @Override
+    @Transactional
     public Task delete(Long id) {
-        return taskRepository.removeTaskById(id).orElseThrow(() ->
-                new DataProcessingException("Can't delete task by this id: " + id));
+        Task task = taskRepository.getOne(id);
+        taskRepository.delete(task);
+        return task;
     }
 }

@@ -1,10 +1,10 @@
 package board.manager.demo.service.impl;
 
-import board.manager.demo.exception.DataProcessingException;
 import board.manager.demo.model.Col;
 import board.manager.demo.repository.ColumnRepository;
 import board.manager.demo.service.ColumnService;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class ColumnServiceImpl implements ColumnService {
@@ -25,8 +25,10 @@ public class ColumnServiceImpl implements ColumnService {
     }
 
     @Override
+    @Transactional
     public Col delete(Long id) {
-        return columnRepository.removeColumnById(id).orElseThrow(() ->
-                new DataProcessingException("Can't delete column by this id: " + id));
+        Col col = columnRepository.getOne(id);
+        columnRepository.delete(col);
+        return col;
     }
 }
