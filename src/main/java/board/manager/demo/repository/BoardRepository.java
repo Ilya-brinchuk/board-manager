@@ -7,7 +7,9 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public interface BoardRepository extends JpaRepository<Board, Long> {
 
     @Query("select b from Board b inner join fetch b.cols where b.id = :id")
@@ -15,8 +17,6 @@ public interface BoardRepository extends JpaRepository<Board, Long> {
 
     @Query("update Board b set b.name = :name where b.id = :id")
     Optional<Board> updateName(@Param("id") Long id, @Param("name") String name);
-
-    Optional<Board> removeBoardById(Long id);
 
     @Query("select b from Board b")
     List<Board> getAllBoard(Pageable pageable);
